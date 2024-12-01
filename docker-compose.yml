@@ -1,0 +1,76 @@
+services:
+  db:
+    image: postgres:16
+    container_name: db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - my_network
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  scraping_app:
+    build: ./
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - my_network
+    command: sh -c "./wait-for-db.sh db python manage.py migrate && python seed.py && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=scraping_app.settings
+      - REDIS_HOST=redis
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  redis:
+    image: redis:alpine
+    ports:
+        - "6379:6379"
+    networks:
+      - my_network
+
+  celery:
+    build: .
+    command: celery -A scraping_app worker --loglevel=info
+    environment:
+      - DJANGO_SETTINGS_MODULE=scraping_app.settings
+      - REDIS_HOST=redis
+    networks:
+      - my_network
+    depends_on:
+      - db
+      - redis
+      - scraping_app
+
+  celery-beat:
+    build: .
+    command: celery -A scraping_app beat --loglevel=info
+    environment:
+      - DJANGO_SETTINGS_MODULE=scraping_app.settings
+      - REDIS_HOST=redis
+    volumes:
+      - .:/code
+    networks:
+      - my_network
+    depends_on:
+      - redis
+
+
+
+networks:
+    my_network:
+      driver: bridge
+
+volumes:
+  pgdata:
+
+
