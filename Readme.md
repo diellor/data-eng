@@ -64,7 +64,7 @@ The project includes:
   ```
 - **Filter by profile link**:
   ```
- http://localhost:8000/api/vikings_nfl/?profile_link=https://www.vikings.com/team/players-roster/jordan-addison/  ```
+  http://localhost:8000/api/vikings_nfl/?profile_link=https://www.vikings.com/team/players-roster/jordan-addison/  ```
 - **Order by player name**:
   ```
   http://localhost:8000/api/vikings_nfl?ordering=Cam Akers
