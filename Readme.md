@@ -23,8 +23,8 @@ The project includes:
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone git@github.com:diellor/data-eng.git
+   cd data-eng
    ```
 
 2. **Build and Start the Application**
