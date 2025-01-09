@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from etl.views import VikingsShowViewSet, NorsemenShowViewSet, NFLVikingsShowViewSet
+from etl.views import ScrapingMetricsView, VikingsShowViewSet, NorsemenShowViewSet, NFLVikingsShowViewSet
 
 router = DefaultRouter()
 router.register(r"vikings", VikingsShowViewSet, basename="vikings_show")
@@ -27,4 +27,6 @@ router.register(r"norsemen", NorsemenShowViewSet, basename="norsemen_show")
 router.register(r"vikings_nfl", NFLVikingsShowViewSet, basename="vikings_nfl")
 
 # Define the URL patterns
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
+urlpatterns = [
+    path("metrics/", ScrapingMetricsView.as_view(), name="scraping-metrics"),
+    path("admin/", admin.site.urls), path("api/", include(router.urls))]

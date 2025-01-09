@@ -2,6 +2,7 @@ from django.db import transaction
 
 from etl.models import (
     RawVikingsShow,
+    ScrapingLog,
     VikingsShow,
     NorsemenShow,
     RawNorsemenShow,
@@ -9,6 +10,7 @@ from etl.models import (
     RawVikingsNFL,
     CareerStat,
 )
+from django.db.models import Count, Avg
 
 
 class VikingsShowService:
@@ -131,3 +133,42 @@ class VikingsNFLService:
             return float(value)
         except (ValueError, TypeError):
             return None
+
+class MetricsService:
+
+    @staticmethod
+    def get_scraping_metrics():
+        # Total tasks
+        total_tasks = ScrapingLog.objects.count()
+        
+        # Success rate
+        successful_tasks = ScrapingLog.objects.filter(status="success").count()
+        success_rate = (successful_tasks / total_tasks) * 100 if total_tasks > 0 else 0
+        
+        # Failure rate
+        failed_tasks = ScrapingLog.objects.filter(status="failure").count()
+        failure_rate = (failed_tasks / total_tasks) * 100 if total_tasks > 0 else 0
+        
+        # Average retries
+        average_retries = ScrapingLog.objects.aggregate(avg_retries=Avg("retries"))["avg_retries"] or 0
+        
+        # Average execution time
+        average_execution_time = ScrapingLog.objects.aggregate(avg_time=Avg("execution_time"))["avg_time"] or 0
+        
+        # Common errors
+        common_errors = (
+            ScrapingLog.objects.filter(status="failure")
+            .values("error_message")
+            .annotate(count=Count("error_message"))
+            .order_by("-count")
+        )
+
+        # Return the calculated metrics
+        return {
+            "total_tasks": total_tasks,
+            "success_rate": round(success_rate, 2),
+            "failure_rate": round(failure_rate, 2),
+            "average_retries": round(average_retries, 2),
+            "average_execution_time": round(average_execution_time, 2),
+            "common_errors": list(common_errors),
+        }

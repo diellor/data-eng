@@ -1,6 +1,9 @@
+from etl.services import MetricsService
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from .models import VikingsShow, NorsemenShow, VikingsNFL
 from .serializers import (
@@ -56,3 +59,12 @@ class NFLVikingsShowViewSet(BaseShowViewSet):
 
     search_fields = ["player_name", "profile_link", "age"]
     filterset_fields = ["player_name", "profile_link"]
+    
+
+class ScrapingMetricsView(APIView):
+    """API View to fetch scraping metrics."""
+
+    def get(self, request, *args, **kwargs):
+        # Fetch metrics from MetricsService
+        metrics = MetricsService.get_scraping_metrics()
+        return Response(metrics)

@@ -1,5 +1,6 @@
 from django.db import models
 from mixins import BaseModel
+from django.utils.timezone import now
 
 
 class RawVikingsShow(BaseModel):
@@ -104,3 +105,15 @@ class CareerStat(BaseModel):
     class Meta:
         verbose_name = "Career Stat"
         verbose_name_plural = "Career Stats"
+
+class ScrapingLog(models.Model):
+    task_name = models.CharField(max_length=255)
+    status = models.CharField(max_length=50, choices=[('success', 'Success'), ('failure', 'Failure')])
+    execution_time = models.FloatField() 
+    retries = models.IntegerField(default=0)
+    error_message = models.TextField(null=True, blank=True)
+    source = models.CharField(max_length=255, null=True, blank=True)
+    timestamp = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f"{self.task_name} - {self.status} at {self.timestamp}"

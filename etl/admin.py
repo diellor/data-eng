@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from etl.models import (
     RawVikingsShow,
+    ScrapingLog,
     VikingsShow,
     RawNorsemenShow,
     NorsemenShow,
@@ -14,7 +15,6 @@ from etl.models import (
 class RawVikingsShowAdmin(admin.ModelAdmin):
     list_display = ("id", "data")
     search_fields = ("id", "data")
-
 
 @admin.register(VikingsShow)
 class VikingsShowAdmin(admin.ModelAdmin):
@@ -72,3 +72,10 @@ class VikingsNFLAdmin(admin.ModelAdmin):
         "experience",
         "image_src",
     )
+
+
+@admin.register(ScrapingLog)
+class ScrapingLogAdmin(admin.ModelAdmin):
+    list_display = ("task_name", "status", "execution_time", "retries", "timestamp")
+    list_filter = ("status", "source")
+    search_fields = ("task_name", "error_message")
