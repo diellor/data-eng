@@ -11,11 +11,13 @@ class VikingsShowParser:
         """Parse the main cast page to extract character links, image src, and hrefs."""
 
         container_div = self.soup.find("div", class_="tile-list tile-boxed")
+        print("container_div", container_div) 
         if not container_div:
             print("No div with class 'tile-list tile-boxed' found.")
             return None
 
         li_elements = container_div.find_all("li")
+        print("li elements", li_elements) 
         if not li_elements:
             print("No <li> elements found in container_div.")
             return []
@@ -38,16 +40,19 @@ class VikingsShowParser:
         """Parse a character's page to extract the character name, actor name, and first <p> description."""
 
         header = self.soup.find("header", class_="section-title")
+        print("header", header) 
         if not header:
             print("No header with class 'section-title' found.")
             return None, None, None
 
         h1_tag = header.find("h1")
+        print("h1_tag", h1_tag) 
         if not h1_tag:
             print("No <h1> tag found in the header.")
             return None, None, None
 
         character_name = h1_tag.find("strong").get_text(strip=True) if h1_tag.find("strong") else None
+        print("character_name", character_name) 
         actor_name = (
             h1_tag.find("small").get_text(strip=True).replace("Played by", "").strip()
             if h1_tag.find("small")
@@ -55,6 +60,7 @@ class VikingsShowParser:
         )
 
         article = self.soup.find("article", class_="main-article")
+        print("article", article) 
         if not article:
             print("No article with class 'main-article' found.")
             return character_name, actor_name, None

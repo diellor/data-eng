@@ -14,7 +14,6 @@ NFL_ROSTER_URL = "https://www.vikings.com/team/players-roster/"
 class ScrapeService:
 
     def log_scraping_task(self, task_name, status, execution_time, retries=0, error_message=None, source=None):
-        print("Storing Logs")  # Debugging
         """Log scraping task details in the database."""
         ScrapingLog.objects.create(
             task_name=task_name,
