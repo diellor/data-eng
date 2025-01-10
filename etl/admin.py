@@ -22,7 +22,7 @@ class VikingsShowAdmin(admin.ModelAdmin):
         "id",
         "actor_url",
         "img_src",
-        "actor_name",
+        "name",
         "character_name",
         "character_description",
     )
@@ -30,7 +30,7 @@ class VikingsShowAdmin(admin.ModelAdmin):
         "id",
         "actor_url",
         "img_src",
-        "actor_name",
+        "name",
         "character_name",
         "character_description",
     )
@@ -44,8 +44,8 @@ class RawNorsemenShowAdmin(admin.ModelAdmin):
 
 @admin.register(NorsemenShow)
 class NorsemenShowAdmin(admin.ModelAdmin):
-    list_display = ("id", "actor_name", "description", "character_name")
-    search_fields = ("id", "actor_name", "description", "character_name")
+    list_display = ("id", "name", "description", "character_name")
+    search_fields = ("id", "name", "description", "character_name")
 
 
 @admin.register(RawVikingsNFL)
@@ -58,7 +58,7 @@ class RawVikingsNFLAdmin(admin.ModelAdmin):
 class VikingsNFLAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "player_name",
+        "name",
         "profile_link",
         "college",
         "experience",
@@ -66,7 +66,7 @@ class VikingsNFLAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "id",
-        "player_name",
+        "name",
         "profile_link",
         "college",
         "experience",

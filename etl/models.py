@@ -18,7 +18,7 @@ class RawVikingsShow(BaseModel):
 class VikingsShow(models.Model):
     actor_url = models.URLField(max_length=500)
     img_src = models.URLField(max_length=500, blank=True, null=True)
-    actor_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     character_name = models.CharField(max_length=255, unique=True)
     character_description = models.TextField(blank=True, null=True)
 
@@ -42,7 +42,7 @@ class RawNorsemenShow(BaseModel):
 class NorsemenShow(BaseModel):
     """"""
 
-    actor_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     character_name = models.CharField(max_length=255, unique=True)
 
@@ -68,7 +68,7 @@ class RawVikingsNFL(BaseModel):
 class VikingsNFL(BaseModel):
     """"""
 
-    player_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     age = models.IntegerField()
     height = models.CharField(max_length=255)
     weight = models.CharField(max_length=255)

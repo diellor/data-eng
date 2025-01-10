@@ -19,7 +19,7 @@ class BaseShowViewSet(viewsets.ModelViewSet):
     http_method_names = ["get"]
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    ordering_fields = ["actor_name", "character_name"]
+    ordering_fields = ["name", "character_name"]
 
     search_fields = []
     filterset_fields = []
@@ -34,11 +34,11 @@ class VikingsShowViewSet(BaseShowViewSet):
     search_fields = [
         "actor_url",
         "img_src",
-        "actor_name",
+        "name",
         "character_name",
         "character_description",
     ]
-    filterset_fields = ["actor_url", "actor_name", "character_name"]
+    filterset_fields = ["actor_url", "name", "character_name"]
 
 
 class NorsemenShowViewSet(BaseShowViewSet):
@@ -47,8 +47,8 @@ class NorsemenShowViewSet(BaseShowViewSet):
     queryset = NorsemenShow.objects.all()
     serializer_class = NorsemenShowSerializer
 
-    search_fields = ["actor_name", "character_name", "description"]
-    filterset_fields = ["actor_name", "character_name"]
+    search_fields = ["name", "character_name", "description"]
+    filterset_fields = ["name", "character_name"]
 
 
 class NFLVikingsShowViewSet(BaseShowViewSet):

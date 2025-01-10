@@ -28,7 +28,7 @@ class VikingsShowService:
                         defaults={
                             "actor_url": actor_url,
                             "img_src": record.get("img_src"),
-                            "actor_name": record.get("actor_name"),
+                            "name": record.get("actor_name"),
                             "character_description": record.get(
                                 "character_description"
                             ),
@@ -48,7 +48,7 @@ class NorsemenShowService:
                         NorsemenShow.objects.update_or_create(
                             character_name=character_name,
                             defaults={
-                                "actor_name": item.get("actor_name"),
+                                "name": item.get("actor_name"),
                                 "description": item.get("description"),
                             },
                         )
