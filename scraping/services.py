@@ -66,6 +66,10 @@ class VikingsShowRawDataService:
             content = self.scrape_service.fetch(VIKINGS_SHOW_CAST_URL)
             soup = self.scrape_service.soupify(content)
             parsed_data = self.parse_data(soup)
+            
+            if not parsed_data: 
+                return
+            
             RawVikingsShow.objects.create(data=parsed_data)
             execution_time = time.time() - start_time
             self.scrape_service.log_scraping_task(
