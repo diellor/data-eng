@@ -127,3 +127,4 @@ vine==5.1.0
 w3lib==2.1.1
 wcwidth==0.2.6
 zope.interface==5.5.2
+django-heroku==0.3.1
