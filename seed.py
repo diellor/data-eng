@@ -61,6 +61,6 @@ if __name__ == "__main__":
     admin_password = "testtest"
 
     print("Creating or updating the admin user...")
-    create_admin_user(admin_username, admin_email, admin_password)
+    #create_admin_user(admin_username, admin_email, admin_password)
 
     run_seed()
