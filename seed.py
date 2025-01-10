@@ -44,11 +44,11 @@ def run_seed():
         VikingsShowRawDataService().handle()
         VikingsShowService().handle()
         
-        # NorsemenShowRawDataService().handle()
-        # NorsemenShowService().handle()
+        NorsemenShowRawDataService().handle()
+        NorsemenShowService().handle()
 
-        # NFLRawDataService().handle()
-        # VikingsNFLService().handle()
+        NFLRawDataService().handle()
+        VikingsNFLService().handle()
 
         print("Data seeding process completed successfully.")
     except Exception as e:
@@ -61,6 +61,6 @@ if __name__ == "__main__":
     admin_password = "testtest"
 
     print("Creating or updating the admin user...")
-    #create_admin_user(admin_username, admin_email, admin_password)
+    create_admin_user(admin_username, admin_email, admin_password)
 
     run_seed()
