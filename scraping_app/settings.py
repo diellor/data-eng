@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_filters",
     "scraping",
     "etl",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "scraping_app.urls"
@@ -102,8 +105,12 @@ REST_FRAMEWORK = {
 #         "PORT": '5432',
 #     }
 # }
-
-
+CORS_ALLOWED_ORIGINS = [
+    'https://tasq-backend-6983e4a880d8.herokuapp.com',
+    'http://localhost:3000',
+]
+CORS_ALLOW_CREDENTIALS = True
+    
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
