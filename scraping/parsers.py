@@ -15,6 +15,11 @@ class VikingsShowParser:
             print("No div with class 'tile-list tile-boxed' found.")
             return None
 
+        li_elements = container_div.find_all("li")
+        if not li_elements:
+            print("No <li> elements found in container_div.")
+            return []
+
         cast_data = [
             {
                 "href": item.find("a").get("href") if item.find("a") else None,
@@ -24,7 +29,7 @@ class VikingsShowParser:
                     else None
                 ),
             }
-            for item in container_div.find_all("li")
+            for item in li_elements
         ]
 
         return cast_data
@@ -38,19 +43,23 @@ class VikingsShowParser:
             return None, None, None
 
         h1_tag = header.find("h1")
-        character_name = h1_tag.find("strong").get_text(strip=True) if h1_tag else None
+        if not h1_tag:
+            print("No <h1> tag found in the header.")
+            return None, None, None
+
+        character_name = h1_tag.find("strong").get_text(strip=True) if h1_tag.find("strong") else None
         actor_name = (
             h1_tag.find("small").get_text(strip=True).replace("Played by", "").strip()
-            if h1_tag
+            if h1_tag.find("small")
             else None
         )
 
         article = self.soup.find("article", class_="main-article")
-        character_description = (
-            article.find("p").get_text(strip=True)
-            if article and article.find("p")
-            else None
-        )
+        if not article:
+            print("No article with class 'main-article' found.")
+            return character_name, actor_name, None
+
+        character_description = article.find("p").get_text(strip=True) if article.find("p") else None
 
         return character_name, actor_name, character_description
 
