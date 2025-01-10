@@ -64,7 +64,7 @@ class VikingsNFLService:
                 details = record.get("details", {})
 
                 player, created = VikingsNFL.objects.update_or_create(
-                    player_name=record.get("player_name", ""),
+                    name=record.get("player_name", ""),
                     defaults={
                         "age": int(details.get("Age", 0)),
                         "height": details.get("Height", ""),

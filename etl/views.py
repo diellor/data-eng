@@ -57,8 +57,8 @@ class NFLVikingsShowViewSet(BaseShowViewSet):
     queryset = VikingsNFL.objects.all()
     serializer_class = VikingsNFLSerializer
 
-    search_fields = ["player_name", "profile_link", "age"]
-    filterset_fields = ["player_name", "profile_link"]
+    search_fields = ["name", "profile_link", "age"]
+    filterset_fields = ["name", "profile_link"]
     
 
 class ScrapingMetricsView(APIView):
