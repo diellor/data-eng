@@ -87,6 +87,11 @@ class VikingsShowRawDataService:
 
     def parse_data(self, soup):
         cast_data = VikingsShowParser(soup).parse_cast_page()
+        
+        if not cast_data: 
+            print("No cast data found.")
+            return None
+        
         for cast in cast_data:
             href = cast.get("href")
             if not href:
