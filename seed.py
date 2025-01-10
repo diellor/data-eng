@@ -41,8 +41,8 @@ def run_seed():
 
     print("Starting the data seeding process...")
     try:
-        # VikingsShowRawDataService().handle()
-        # VikingsShowService().handle()
+        VikingsShowRawDataService().handle()
+        VikingsShowService().handle()
         
         NorsemenShowRawDataService().handle()
         NorsemenShowService().handle()
