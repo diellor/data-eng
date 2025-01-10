@@ -44,11 +44,11 @@ def run_seed():
         VikingsShowRawDataService().handle()
         VikingsShowService().handle()
         
-        NorsemenShowRawDataService().handle()
-        NorsemenShowService().handle()
+        # NorsemenShowRawDataService().handle()
+        # NorsemenShowService().handle()
 
-        NFLRawDataService().handle()
-        VikingsNFLService().handle()
+        # NFLRawDataService().handle()
+        # VikingsNFLService().handle()
 
         print("Data seeding process completed successfully.")
     except Exception as e:

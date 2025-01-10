@@ -65,6 +65,7 @@ class VikingsShowRawDataService:
         try:
             content = self.scrape_service.fetch(VIKINGS_SHOW_CAST_URL)
             soup = self.scrape_service.soupify(content)
+            print(soup)
             parsed_data = self.parse_data(soup)
             
             if not parsed_data: 
