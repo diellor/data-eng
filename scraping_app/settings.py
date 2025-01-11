@@ -105,11 +105,11 @@ REST_FRAMEWORK = {
 #         "PORT": '5432',
 #     }
 # }
-CORS_ALLOWED_ORIGINS = [
-    'https://tasq-backend-6983e4a880d8.herokuapp.com',
-    'http://localhost:3000',
-]
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     'https://tasq-backend-6983e4a880d8.herokuapp.com',
+#     'http://localhost:3000',
+# ]
+# CORS_ALLOW_CREDENTIALS = True
     
 DATABASES = {
     "default": {
@@ -122,7 +122,20 @@ DATABASES = {
     }
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS',
+]
 
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
