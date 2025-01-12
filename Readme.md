@@ -26,7 +26,7 @@ The project includes:
    git clone git@github.com:diellor/data-eng.git
    cd data-eng
    ```
-1.1 ** Uncomment DATABASES configuration to local enviroment located at settings.py
+1.1. **Uncomment DATABASES configuration to local enviroment located at settings.py
 
 2. **Build and Start the Application**
    ```bash
