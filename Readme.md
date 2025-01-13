@@ -15,7 +15,7 @@ To open the frontend (web-app):
 - https://arcane-anchorage-17180-0ba9637e4f58.herokuapp.com/?tab=norsemen (frontend)
 
 To access the API:
-- https://tasq-backend-6983e4a880d8.herokuapp.com/
+- https://tasq-backend-6983e4a880d8.herokuapp.com/api/
 
 
 ---
