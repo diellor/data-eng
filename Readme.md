@@ -26,7 +26,19 @@ The project includes:
    git clone git@github.com:diellor/data-eng.git
    cd data-eng
    ```
-1.1. **Uncomment DATABASES configuration to local enviroment located at settings.py
+**Uncomment DATABASES configuration to local enviroment located at scraping_app/settings.py
+   ```bash
+   # DATABASES = {
+   #     "default": {
+   #         "ENGINE": "django.db.backends.postgresql",
+   #         "NAME": os.getenv("POSTGRES_DB"),
+   #         "USER": os.getenv("POSTGRES_USER"),
+   #         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+   #         "HOST": os.getenv("POSTGRES_HOST", "db"),
+   #         "PORT": '5432',
+   #     }
+   # }
+** Comment out or remove the existing configuration which is for the database in production
 
 2. **Build and Start the Application**
    ```bash
