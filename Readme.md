@@ -26,7 +26,7 @@ The project includes:
    git clone git@github.com:diellor/data-eng.git
    cd data-eng
    ```
-**Uncomment DATABASES configuration to local enviroment located at scraping_app/settings.py
+Uncomment DATABASES configuration to local enviroment located at scraping_app/settings.py
    ```bash
    # DATABASES = {
    #     "default": {
@@ -38,7 +38,8 @@ The project includes:
    #         "PORT": '5432',
    #     }
    # }
-** Comment out or remove the existing configuration which is for the database in production
+   ```
+Comment out or remove the existing configuration which is for the database in production
 
 2. **Build and Start the Application**
    ```bash
